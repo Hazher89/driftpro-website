@@ -36,8 +36,8 @@ const ParticleSystem = () => {
       opacity: number
       
       constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
+        this.x = Math.random() * (canvas ? canvas.width : window.innerWidth)
+        this.y = Math.random() * (canvas ? canvas.height : window.innerHeight)
         this.vx = (Math.random() - 0.5) * 0.5
         this.vy = (Math.random() - 0.5) * 0.5
         this.size = Math.random() * 2 + 1
