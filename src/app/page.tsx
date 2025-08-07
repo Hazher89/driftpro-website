@@ -48,8 +48,10 @@ const ParticleSystem = () => {
         this.x += this.vx
         this.y += this.vy
         
-        if (this.x < 0 || this.x > (canvas?.width || 0)) this.vx *= -1
-        if (this.y < 0 || this.y > (canvas?.height || 0)) this.vy *= -1
+        if (canvas) {
+          if (this.x < 0 || this.x > canvas.width) this.vx *= -1
+          if (this.y < 0 || this.y > canvas.height) this.vy *= -1
+        }
       }
       
       draw() {
@@ -345,12 +347,12 @@ export default function HomePage() {
               transition={{ duration: 0.5 }}
             >
               <div className="flex-shrink-0">
-                <img src="/logo.svg" alt="DriftPro" className="h-10 w-auto" />
+                <img src="/logo.svg" alt="DriftPro" className="h-14 w-auto" />
               </div>
             </motion.div>
             
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
+              <div className="ml-10 flex items-center space-x-4">
                 {['features', 'contact'].map((section) => (
                   <motion.a
                     key={section}
@@ -366,6 +368,17 @@ export default function HomePage() {
                     {section.charAt(0).toUpperCase() + section.slice(1)}
                   </motion.a>
                 ))}
+                <motion.a 
+                  href="https://admin.driftpro.no" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-300 flex items-center gap-2"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Lock size={16} />
+                  Login
+                </motion.a>
                 <motion.a 
                   href="#contact" 
                   className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-300"
@@ -409,6 +422,16 @@ export default function HomePage() {
                     {section.charAt(0).toUpperCase() + section.slice(1)}
                   </a>
                 ))}
+                <a 
+                  href="https://admin.driftpro.no" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-green-600 to-emerald-600 text-white block text-center px-3 py-2 rounded-md text-base font-medium flex items-center justify-center gap-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Lock size={16} />
+                  Login
+                </a>
                 <a 
                   href="#contact" 
                   className="bg-gradient-to-r from-blue-600 to-purple-600 text-white block text-center px-3 py-2 rounded-md text-base font-medium"
